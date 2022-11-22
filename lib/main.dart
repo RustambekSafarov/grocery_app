@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:grocery_app/pages/intro.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(
     const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MyApp(),
     ),
   );
@@ -18,6 +21,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold(
+      body: IntroPage(),
+    );
   }
 }
