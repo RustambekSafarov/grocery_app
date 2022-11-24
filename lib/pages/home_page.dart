@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grocery_app/components/item_tile.dart';
+import 'package:grocery_app/components/cart.dart';
+import 'package:grocery_app/pages/cart_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,13 +12,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List _shopItems = const [
-    // [ itemName, itemPrice, imagePath, color ]
-    ["Avocado", "4.00", "images/avocado.png", Colors.green],
-    ["Banana", "2.50", "images/banana.png", Colors.yellow],
-    ["Chicken", "12.80", "images/chicken.png", Colors.brown],
-    ["Water", "1.00", "images/water.png", Colors.blue],
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,15 +54,16 @@ class _HomePageState extends State<HomePage> {
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.8,
+                  childAspectRatio: 0.9,
                 ),
                 padding: const EdgeInsets.all(12),
-                itemCount: _shopItems[0].length,
+                itemCount: shopItems[0].length,
                 itemBuilder: (context, index) => ItemTile(
-                  item_name: _shopItems[index][0],
-                  item_price: _shopItems[index][1],
-                  color: _shopItems[index][3],
-                  image_path: _shopItems[index][2],
+                  item_name: shopItems[index][0],
+                  item_price: shopItems[index][1],
+                  color: shopItems[index][3],
+                  image_path: shopItems[index][2],
+                  onPressed: addCartItem(index),
                 ),
               ),
             )
@@ -75,8 +71,17 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(
+        onPressed: () {
+          setState(() {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CartPage(),
+                ));
+          });
+        },
+        splashColor: Colors.blue[900],
+        child: const Icon(
           Icons.shopping_bag,
         ),
       ),

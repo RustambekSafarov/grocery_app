@@ -44,7 +44,7 @@ class _IntroPageState extends State<IntroPage> {
               color: Colors.grey[700],
             ),
           ),
-          const SizedBox(height: 34),
+          const Spacer(),
           // Spacer(flex: 4,),
           GestureDetector(
             onTap: () => Navigator.pushReplacement(
@@ -68,7 +68,8 @@ class _IntroPageState extends State<IntroPage> {
                 ),
               ),
             ),
-          )
+          ),
+          const Spacer()
         ],
       )),
     );
